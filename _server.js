@@ -4,7 +4,7 @@ const app = express();
 
 //set uo mongoose connection
 const mongoose = require('mongoose');
-let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:23619/productstutorial';
+let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:35833/dbcompany';
 // let mongoDB = process.env.MONGODB_URL || db_URL;
 // mongoose.connect(mongoDB);
 // mongoose.Promise = global.Promise;
@@ -13,12 +13,13 @@ let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:23619/productstutori
 
 mongoose.connect(db_URL, {
     useNewUrlParser: true
-}).then(()=>{
+}).then(() => {
     console.log("Successfully connected to the database");
 }).catch(err => {
-    console.log("error")
+    console.log("error:" + err) 
     process.exit();
 })
+
 
 //
 
@@ -35,11 +36,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //configure port
 const port = 8585;
 
-// app.get('/', (req, res) => res.send('Hello!!!'));
 
-app.get('/service', router.serviceRouter.getData);
+require('./routes/routes')(app);
 
-app.post('/service', router.serviceRouter.createItem);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.get('/',(req, res)=>{
+    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."})
+})
+
+app.listen(port, function () {
+
+    console.log(`Example app listening on port ${port}!`);
+});
 
