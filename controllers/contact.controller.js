@@ -1,4 +1,4 @@
-const Service = require('../models/service.model');
+const Contact = require('../models/contact.model');
 
 exports.getData = function (req, res) {
 

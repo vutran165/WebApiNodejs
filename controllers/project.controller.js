@@ -1,4 +1,4 @@
-const Service = require('../models/service.model');
+const Project = require('../models/project.model');
 
 exports.getData = function (req, res) {
 
