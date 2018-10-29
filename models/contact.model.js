@@ -8,8 +8,8 @@ let ContactModel = new Schema({
     content: { type: String, required: false, max: 1000 },
     create_date: { type: String, required: true },
     modified_date: { type: String, required: false },
-    status: {type: boolean, required: false},
+    status: {type: Boolean, required: false},
     phone: {type: String, required: false, max: 15}
 })
 
-export default mongoose.model('contact', ProjectModel)
+module.exports = mongoose.model('contact', ContactModel)

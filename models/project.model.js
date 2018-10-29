@@ -8,9 +8,9 @@ let ProjectModel = new Schema({
     note: { type: String, required: false, max: 500 },
     create_date: { type: String, required: true },
     modified_date: { type: String, required: false },
-    status: { type: boolean, required: false },
+    status: { type: Boolean, required: false },
     imagePath: { type: String, required: false, max: 200 },
     serviceId: { type: String, required: false }
 })
 
-export default mongoose.model('project', ProjectModel)
+module.exports = mongoose.model('project', ProjectModel)

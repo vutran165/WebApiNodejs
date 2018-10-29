@@ -4,9 +4,9 @@ const contactRouter = express.Router();
 const projectRouter = express.Router();
 
 
-const serviceController = require('../controllers/serviceController');
-const contactController = require('../controllers/contactController');
-const projectController = require('../controllers/projectController');
+const serviceController = require('../controllers/service.controller');
+const contactController = require('../controllers/contact.controller');
+const projectController = require('../controllers/project.controller');
 
 //service
 serviceRouter.get('/service', serviceController.getData);
@@ -29,5 +29,3 @@ projectRouter.post('/create', projectController.createItem);
 projectRouter.put('/edit/:id', projectController.editItem);
 projectRouter.delete('/delete/:id', projectController.deleteItem);
 
-
-module.exports = router
