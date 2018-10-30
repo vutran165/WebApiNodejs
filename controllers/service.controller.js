@@ -2,6 +2,13 @@ const ServiceModel = require('../models/service.model');
 const data = require('../models/data');
 
 exports.getData = function (req, res) {
+    ServiceModel.find().then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: res.message
+        })
+    })
 
 }
 
@@ -49,11 +56,46 @@ exports.createItem = function (req, res) {
 }
 
 exports.editItem = function (req, res) {
+    ServiceModel.findByIdAndUpdate(req.params.id, {
+        // do somehting
+    }, { new: true }).then(item => {
+        if (!item) {
+            return res.status(404).send({
+                message: "item not found with id" + req.params.id
+            });
+        }
+        res.send(item);
+    }).catch(err => {
+        if (err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "item not found with id" + req.params.id
+            });
+        }
+        return res.status(500).send({
+            message: "Error updating item with id" + req.params.id
+        })
+    })
 
 }
 
 exports.deleteItem = function (req, res) {
-
+    ServiceModel.findByIdAndRemove(req.params.id).then(item => {
+        if (!item) {
+            return res.status(404).send({
+                message: "item not found with id" + req.params.id
+            });
+        }
+        res.send(item);
+    }).catch(err => {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "item not found with id" + req.params.id
+            })
+        }
+        return res.status(500).send({
+            message: "Could not delete item with id" + req.params.id
+        })
+    })
 }
 
 

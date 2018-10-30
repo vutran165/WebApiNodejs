@@ -1,10 +1,4 @@
 module.exports = function(app){
-    const express = require('express');
-    // const serviceRouter = express.Router();
-    // const contactRouter = express.Router();
-    // const projectRouter = express.Router();
-
-
     const serviceController = require('../controllers/service.controller');
     const contactController = require('../controllers/contact.controller');
     const projectController = require('../controllers/project.controller');
