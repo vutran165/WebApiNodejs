@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let ServiceModel = new Schema({
+var ServiceModel = new Schema({
     id: { type: String, required: true, max: 20 },
     content: { type: String, required: true, max: 500 },
     note: { type: String, required: false, max: 500 },
@@ -13,4 +13,4 @@ let ServiceModel = new Schema({
 // export default mongoose.model('service', ServiceModel)
 
 //export the model
-module.exports = mongoose.model('service', ServiceModel)
+module.exports = mongoose.model('services', ServiceModel)

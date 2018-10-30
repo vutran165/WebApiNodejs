@@ -12,4 +12,4 @@ let ContactModel = new Schema({
     phone: {type: String, required: false, max: 15}
 })
 
-module.exports = mongoose.model('contact', ContactModel)
+module.exports = mongoose.model('contacts', ContactModel)

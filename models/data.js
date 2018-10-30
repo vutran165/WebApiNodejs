@@ -39,7 +39,6 @@ var serviceData  = [
         status: 'req.body.status',
         imagePath: 'req.body.imagePath',
     }
-
 ]
 
 exports.serviceData = serviceData;

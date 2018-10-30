@@ -13,4 +13,4 @@ let ProjectModel = new Schema({
     serviceId: { type: String, required: false }
 })
 
-module.exports = mongoose.model('project', ProjectModel)
+module.exports = mongoose.model('projects', ProjectModel)

@@ -14,12 +14,12 @@ let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:35833/dbcompany';
 mongoose.connect(db_URL, {
     useNewUrlParser: true
 }).then(() => {
+    var db = 
     console.log("Successfully connected to the database");
 }).catch(err => {
     console.log("error:" + err) 
     process.exit();
 })
-
 
 //
 
@@ -45,7 +45,6 @@ app.get('/',(req, res)=>{
 })
 
 app.listen(port, function () {
-
     console.log(`Example app listening on port ${port}!`);
 });
 

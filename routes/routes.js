@@ -1,4 +1,4 @@
-module.exports = (app) => {
+module.exports = function(app){
     const express = require('express');
     // const serviceRouter = express.Router();
     // const contactRouter = express.Router();
@@ -12,23 +12,23 @@ module.exports = (app) => {
     //service
     app.get('/service', serviceController.getData);
     app.get('/service/:id', serviceController.getDataById);
-    app.post('/create', serviceController.createItem);
-    app.put('/edit/:id', serviceController.editItem);
-    app.delete('/delete/:id', serviceController.deleteItem);
+    app.post('/service', serviceController.createItem);
+    app.put('/service/:id', serviceController.editItem);
+    app.delete('/service/:id', serviceController.deleteItem);
 
     //contact
     app.get('/contact', contactController.getData);
     app.get('/contact/:id', contactController.getDataById);
-    app.post('/create', contactController.createItem);
-    app.put('/edit/:id', contactController.editItem);
-    app.delete('/delete/:id', contactController.deleteItem);
+    app.post('/contact', contactController.createItem);
+    app.put('/contact/:id', contactController.editItem);
+    app.delete('/contact/:id', contactController.deleteItem);
 
     //project
-    app.get('/contact', projectController.getData);
-    app.get('/contact/:id', projectController.getDataById);
-    app.post('/create', projectController.createItem);
-    app.put('/edit/:id', projectController.editItem);
-    app.delete('/delete/:id', projectController.deleteItem);
+    app.get('/project', projectController.getData);
+    app.get('/project/:id', projectController.getDataById);
+    app.post('/project', projectController.createItem);
+    app.put('/project/:id', projectController.editItem);
+    app.delete('/project/:id', projectController.deleteItem);
 
 }
 
