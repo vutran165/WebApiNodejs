@@ -19,8 +19,8 @@ exports.getDataById = function (req, res) {
         if (err.kind === 'ObjectId') {
             return res.status(404).send({
                 message: "Customer not found with id " + req.params.customerId
-            })
-        }
+            });
+        };
         return res.status(500).send({
             message: "Error retrieving Customer with id"
         })
