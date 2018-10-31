@@ -1,9 +1,8 @@
 const ServiceModel = require('../models/service.model');
-const data = require('../models/data');
 
 exports.getData = function (req, res) {
     ServiceModel.find().then(data => {
-        res.send(data);
+        res.send(JSON.stringify(data));
     }).catch(err => {
         res.status(500).send({
             message: res.message

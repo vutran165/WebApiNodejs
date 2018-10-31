@@ -14,10 +14,9 @@ let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:35833/dbcompany';
 mongoose.connect(db_URL, {
     useNewUrlParser: true
 }).then(() => {
-    var db = 
     console.log("Successfully connected to the database");
 }).catch(err => {
-    console.log("error:" + err) 
+    console.log("error:" + err)
     process.exit();
 })
 
@@ -33,6 +32,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //
 
+//enable CORS
+// app.use(function (req, res, next) {
+//     // res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+//     res.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT");
+//     res.header("Access-Control-Allow-Credentials", true)
+//     next();
+// })
+
 //configure port
 const port = 8585;
 
@@ -40,8 +48,8 @@ const port = 8585;
 require('./routes/routes')(app);
 
 
-app.get('/',(req, res)=>{
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."})
+app.get('/', (req, res) => {
+    res.json({ "message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes." })
 })
 
 app.listen(port, function () {
