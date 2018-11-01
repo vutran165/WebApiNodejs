@@ -1,7 +1,10 @@
+
 const ServiceModel = require('../models/service.model');
 
 exports.getData = function (req, res) {
     ServiceModel.find().then(data => {
+        console.log(res);
+        // res.writeHead(200, { 'Content-Type': 'text/json; charset=utf-8' })
         res.send(JSON.stringify(data));
     }).catch(err => {
         res.status(500).send({

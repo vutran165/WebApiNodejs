@@ -2,16 +2,12 @@ const express = require('express');
 const app = express();
 
 
-//set uo mongoose connection
-const mongoose = require('mongoose');
-let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:35833/dbcompany';
-// let mongoDB = process.env.MONGODB_URL || db_URL;
-// mongoose.connect(mongoDB);
-// mongoose.Promise = global.Promise;
-// let db = mongoose.connection;
-// db.on('err', console.error.bind(console, 'MongoDB connection error:'));
 
-mongoose.connect(db_URL, {
+//set uo mongoose connection with online db
+const mongoose = require('mongoose');
+// let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:35833/dbcompany';
+let db_URL_local = 'mongodb://localhost:27017/CompanyDb'
+mongoose.connect(db_URL_local, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");
@@ -21,6 +17,17 @@ mongoose.connect(db_URL, {
 })
 
 //
+
+// set up connectiong with mongoclient - using mongodb package
+// const mongoClient = require('mongodb').MongoClient;
+// mongoClient.connect("mongodb://localhost:27017/CompanyDb", function (err, db) {
+//     if (!err) {
+//         console.log("done!!!")
+//     } else {
+//         console.log(err);
+//     }
+// })
+// end
 
 //import router
 const router = require('./routes/routes');
@@ -33,13 +40,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //
 
 //enable CORS
-// app.use(function (req, res, next) {
-//     // res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-//     res.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT");
-//     res.header("Access-Control-Allow-Credentials", true)
-//     next();
-// })
+app.use(function (req, res, next) {
+    console.log(req);
+    req.xhr;
+    // res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    // res.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT");
+    // res.header("Access-Control-Allow-Credentials", true)
+    next();
+})
 
 //configure port
 const port = 8585;

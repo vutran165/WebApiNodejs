@@ -1,10 +1,17 @@
-module.exports = function(app){
+module.exports = function (app) {
     const serviceController = require('../controllers/service.controller');
     const contactController = require('../controllers/contact.controller');
     const projectController = require('../controllers/project.controller');
 
     //service
     app.get('/service', serviceController.getData);
+    // app.get('/service', function (req, res) {
+    //     console.log(req);
+    //     req.xhr;
+    //     serviceController.getData();
+    //     res.writeHead(200, { 'Content-Type': 'text/json; charset=utf-8' })
+    // });
+
     app.get('/service/:id', serviceController.getDataById);
     app.post('/service', serviceController.createItem);
     app.put('/service/:id', serviceController.editItem);
