@@ -5,7 +5,8 @@ exports.getData = function (req, res) {
     ServiceModel.find().then(data => {
         console.log(res);
         // res.writeHead(200, { 'Content-Type': 'text/json; charset=utf-8' })
-        res.send(JSON.stringify(data));
+        // res.send(JSON.stringify(data));
+        res.send(data);
     }).catch(err => {
         res.status(500).send({
             message: res.message

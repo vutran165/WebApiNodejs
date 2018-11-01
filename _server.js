@@ -5,9 +5,9 @@ const app = express();
 
 //set uo mongoose connection with online db
 const mongoose = require('mongoose');
-// let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:35833/dbcompany';
-let db_URL_local = 'mongodb://localhost:27017/CompanyDb'
-mongoose.connect(db_URL_local, {
+let db_URL = 'mongodb://bachtuvu:tony8594@ds235833.mlab.com:35833/dbcompany';
+// let db_URL_local = 'mongodb://localhost:27017/CompanyDb'
+mongoose.connect(db_URL, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");
@@ -41,12 +41,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //enable CORS
 app.use(function (req, res, next) {
-    console.log(req);
-    req.xhr;
-    // res.header("Access-Control-Allow-Origin", "*");
-    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    // res.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT");
-    // res.header("Access-Control-Allow-Credentials", true)
+    // console.log(req);
+    // req.xhr;
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Credentials", true)
     next();
 })
 

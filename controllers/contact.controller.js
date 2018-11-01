@@ -2,6 +2,7 @@ const ContactModel = require('../models/contact.model');
 
 exports.getData = function (req, res) {
     ContactModel.find().then(data => {
+        console.log(res);
         res.send(data);
     }).catch(err => {
         res.status(500).send({

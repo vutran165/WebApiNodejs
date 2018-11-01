@@ -10,7 +10,5 @@ var ServiceModel = new Schema({
     imagePath: { type: String, required: false, max: 200 },
 })
 
-// export default mongoose.model('service', ServiceModel)
-
 //export the model
 module.exports = mongoose.model('services', ServiceModel)
