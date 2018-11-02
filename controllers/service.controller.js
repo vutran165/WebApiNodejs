@@ -1,17 +1,30 @@
 
 const ServiceModel = require('../models/service.model');
+const pagination = require('../helper/pagination');
 
 exports.getData = function (req, res) {
-    ServiceModel.find().then(data => {
-        console.log(res);
-        // res.writeHead(200, { 'Content-Type': 'text/json; charset=utf-8' })
-        // res.send(JSON.stringify(data));
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message: res.message
+    req.params.pageNo = 1;
+    req.params.pageSize = 5;
+    // ServiceModel.find().then(data => {
+    //     res.send(data);
+
+    // }).catch(err => {
+    //     res.status(500).send({
+    //         message: res.message
+    //     })
+    // })
+    ServiceModel.find({})
+        .skip((req.params.pageNo * req.params.pageSize) - req.params.pageSize)
+        .limit(req.params.pageSize).exec(function (err, data) {
+            ServiceModel.countDocuments().exec(function (err, count) {
+                if (err) return next(err);
+                res.send({
+                    pagingObj: pagination.pagination(req.params.pageNo, req.params.pageSize, count),
+                    // total: count,
+                    data: data,
+                })
+            })
         })
-    })
 
 }
 
