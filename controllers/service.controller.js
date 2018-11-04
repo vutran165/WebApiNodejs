@@ -5,14 +5,7 @@ const pagination = require('../helper/pagination');
 exports.getData = function (req, res) {
     req.params.pageNo = 1;
     req.params.pageSize = 5;
-    // ServiceModel.find().then(data => {
-    //     res.send(data);
 
-    // }).catch(err => {
-    //     res.status(500).send({
-    //         message: res.message
-    //     })
-    // })
     ServiceModel.find({})
         .skip((req.params.pageNo * req.params.pageSize) - req.params.pageSize)
         .limit(req.params.pageSize).exec(function (err, data) {
@@ -51,7 +44,8 @@ exports.getDataById = function (req, res) {
 }
 
 exports.createItem = function (req, res) {
-    // let item = serviceData[0];
+    console.log(req);
+    // let item = req;
     let item = new ServiceModel({
         id: 'req.body.id',
         content: 'req.body.content',
@@ -59,8 +53,8 @@ exports.createItem = function (req, res) {
         create_date: 'req.body.create_date',
         status: true,
         imagePath: 'req.body.imagePath',
+        title: '87492734'
     });
-    console.log(item);
     //save item
     item.save().then(data => {
         res.send(data);

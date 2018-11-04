@@ -32,6 +32,8 @@ exports.getDataById = function (req, res) {
 }
 
 exports.createItem = function (req, res) {
+    console.log(req);
+    // let item = req
     let item = new ContactModel({
         id: '121212',
         email: '{ type: String, required: false, max: 200 }',

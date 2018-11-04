@@ -18,17 +18,6 @@ mongoose.connect(db_URL, {
 
 //
 
-// set up connectiong with mongoclient - using mongodb package
-// const mongoClient = require('mongodb').MongoClient;
-// mongoClient.connect("mongodb://localhost:27017/CompanyDb", function (err, db) {
-//     if (!err) {
-//         console.log("done!!!")
-//     } else {
-//         console.log(err);
-//     }
-// })
-// end
-
 //import router
 const router = require('./routes/routes');
 
