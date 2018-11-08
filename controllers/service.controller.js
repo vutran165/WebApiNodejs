@@ -58,6 +58,8 @@ exports.createItem = function (req, res) {
     //save item
     item.save().then(data => {
         res.send(data);
+    }, function () {
+
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while creating the item." + req.params.id
