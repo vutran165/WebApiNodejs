@@ -47,17 +47,19 @@ exports.createItem = function (req, res) {
     console.log(req);
     // let item = req;
     let item = new ServiceModel({
-        id: 'req.body.id',
-        content: 'req.body.content',
-        note: 'req.body.note',
+        id: '11212',
+        content: req.body.content,
+        note: req.body.note,
         create_date: 'req.body.create_date',
-        status: true,
+        status: req.body.status,
         imagePath: 'req.body.imagePath',
-        title: '87492734'
+        title: req.body.title
     });
     //save item
     item.save().then(data => {
         res.send(data);
+    }, function () {
+
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while creating the item." + req.params.id
