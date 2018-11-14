@@ -47,7 +47,7 @@ exports.createItem = function (req, res) {
     console.log(req);
     // let item = req;
     let item = new ServiceModel({
-        id: '11212',
+        id: '11212+++',
         content: req.body.content,
         note: req.body.note,
         create_date: 'req.body.create_date',
@@ -57,7 +57,11 @@ exports.createItem = function (req, res) {
     });
     //save item
     item.save().then(data => {
-        res.send(data);
+
+        res.send(JSON.stringify({
+            satus: 200,
+            satusCode: 'Ok'
+        }));
     }, function () {
 
     }).catch(err => {
