@@ -8,6 +8,7 @@ var ServiceModel = new Schema({
     create_date: { type: String, required: true },
     status: {type: Boolean, required: false},
     imagePath: { type: String, required: false, max: 200 },
+	title: { type: String, required: true, max: 100 }
 })
 
 //export the model
