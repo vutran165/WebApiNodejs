@@ -3,7 +3,8 @@ const ServiceModel = require('../models/service.model');
 const pagination = require('../helper/pagination');
 
 exports.getData = function (req, res) {
-    req.params.pageNo = 1;
+    console.log(req);
+    pageNo = Number(req.query.pageNo);
     req.params.pageSize = 5;
 
     ServiceModel.find({})
@@ -56,7 +57,7 @@ exports.createItem = function (req, res) {
         title: req.body.title
     });
     //save item
-    item.save().then(data => {
+    item.save().then(() => {
 
         res.send(JSON.stringify({
             satus: 200,
