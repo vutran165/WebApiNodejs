@@ -3,23 +3,24 @@ const ServiceModel = require('../models/service.model');
 const pagination = require('../helper/pagination');
 
 exports.getData = function (req, res) {
-    console.log(req);
+
     pageNo = Number(req.query.pageNo);
-    req.params.pageSize = 5;
+    if (isNaN(pageNo) == true) {
+        pageNo = 1;
+    }
+    pageSize = 5;
 
     ServiceModel.find({})
-        .skip((req.params.pageNo * req.params.pageSize) - req.params.pageSize)
-        .limit(req.params.pageSize).exec(function (err, data) {
+        .skip((pageNo * pageSize) - pageSize)
+        .limit(pageSize).exec(function (err, data) {
             ServiceModel.countDocuments().exec(function (err, count) {
                 if (err) return next(err);
                 res.send({
-                    pagingObj: pagination.pagination(req.params.pageNo, req.params.pageSize, count),
-                    // total: count,
+                    pagingObj: pagination.pagination(pageNo, pageSize, count),
                     data: data,
                 })
             })
         })
-
 }
 
 exports.getDataById = function (req, res) {
