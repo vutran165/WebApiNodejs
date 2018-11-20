@@ -40,7 +40,7 @@ exports.pagination = function (pageNo, pageSize, totalRec) {
             pagingObject.lastPage = 8;
         } else if (pagingObject.pageNo + 3 >= pagingObject.pageCount) {
             pagingObject.startPage = pagingObject.pageCount - 7;
-            pagingObject.lastPage = pageCount;
+            pagingObject.lastPage = pagingObject.pageCount;
         } else {
             pagingObject.startPage = pagingObject.pageNo - 4;
             pagingObject.lastPage = pagingObject.startPage + 7;

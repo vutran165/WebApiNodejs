@@ -13,7 +13,7 @@ mongoose.connect(db_URL, {
     console.log("Successfully connected to the database");
 }).catch(err => {
     console.log("error:" + err)
-    process.exit();
+    // process.exit();
 })
 
 //
