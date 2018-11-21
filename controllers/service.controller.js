@@ -74,15 +74,25 @@ exports.createItem = function (req, res) {
 }
 
 exports.editItem = function (req, res) {
+    console.log(req);
     ServiceModel.findByIdAndUpdate(req.params.id, {
         // do somehting
+        id: req.body.id,
+        content: req.body.content,
+        note: req.body.note,
+        status: req.body.status,
+        imagePath: req.body.imagePath,
+        title: req.body.title,
     }, { new: true }).then(item => {
         if (!item) {
             return res.status(404).send({
                 message: "item not found with id" + req.params.id
             });
         }
-        res.send(item);
+        res.send(JSON.stringify({
+            status: 304,
+            message: 'Modified'
+        }));
     }).catch(err => {
         if (err.kind === 'ObjectId') {
             return res.status(404).send({
@@ -97,13 +107,16 @@ exports.editItem = function (req, res) {
 }
 
 exports.deleteItem = function (req, res) {
-    ServiceModel.findByIdAndRemove(req.params.id).then(item => {
+    ServiceModel.findOneAndRemove(req.params.id).then(item => {
         if (!item) {
             return res.status(404).send({
                 message: "item not found with id" + req.params.id
             });
         }
-        res.send(item);
+        res.send(JSON.stringify({
+            status: 200,
+            message: 'Ok'
+        }));
     }).catch(err => {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
