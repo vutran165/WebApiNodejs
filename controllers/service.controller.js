@@ -4,6 +4,8 @@ const pagination = require('../helper/pagination');
 
 exports.getData = function (req, res) {
 
+    console.log(req);
+
     pageNo = Number(req.query.pageNo);
     if (isNaN(pageNo) == true) {
         pageNo = 1;
