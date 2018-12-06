@@ -16,7 +16,8 @@ mongoose.connect(db_URL, {
     // process.exit();
 })
 
-//
+//// Serve only the static files 
+app.use(express.static(__dirname + '/'))
 
 //import router
 const router = require('./routes/routes');
@@ -45,8 +46,9 @@ const port = 8585;
 require('./routes/routes')(app);
 
 
-app.get('/', (req, res) => {
-    res.json({ "message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes." })
+app.get('*', (req, res) => {
+    // res.json({ "message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes." })
+    res.sendFile(path.join(__dirname + '/index.html'));
 })
 
 app.listen(port, function () {
