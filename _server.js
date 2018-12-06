@@ -41,7 +41,10 @@ app.use(function (req, res, next) {
 })
 
 //configure port
-const port = 8585;
+// const port = 8585;
+
+//configure port in heroku
+var PORT = process.env.PORT || 8585;
 
 require('./routes/routes')(app);
 
@@ -51,7 +54,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
 
-app.listen(port, function () {
+app.listen(PORT, function () {
     console.log(`Example app listening on port ${port}!`);
 });
 

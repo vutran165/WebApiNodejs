@@ -3,6 +3,9 @@
     "description": "description",
     "authors": "JackyTran",
     "version": "1.0.0",
+    "scripts": {
+        "start": "node _server.js"
+    },
     "dependencies": {
         "express": "^4.16.4",
         "mongoose": "^5.3.7"
